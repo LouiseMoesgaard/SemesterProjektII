@@ -10,5 +10,5 @@ package semesterprojekt_2;
  * @author louise
  */
 public class DummyClass {
-    private int test = 2;
+    private int test = 42;
 }
