@@ -1,21 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package semesterprojekt_2;
 
-/**
- *
- * @author louise
- */
+import javax.swing.JFrame;
+
 public class Semesterprojekt_2 {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws Exception {
+        
+        JFrame ramme = new JFrame();
+        ramme.add(new EKG());
+        ramme.setTitle("EKG for patienten");
+        ramme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ramme.setResizable(false);
+        ramme.pack();
+        ramme.setVisible(true);
     }
     
 }
