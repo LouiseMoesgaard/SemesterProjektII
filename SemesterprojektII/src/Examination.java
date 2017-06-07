@@ -4,13 +4,16 @@ import javax.swing.JFrame;
 public class Examination {
     
     public static void main (String[] args ){
-        JFrame ramme = new JFrame();
-        ramme.add(new GUIPanel());
-        ramme.setTitle("Semesterprojekt EKG");
-        ramme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ramme.setResizable(false);
-        ramme.pack();
-        ramme.setVisible(true);
+        JFrame frame = new JFrame();
+        frame.add(new GUIPanel());
+        frame.setTitle("Semesterprojekt EKG");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setVisible(true);
+        
+        DataAccess dao = new DataAccess();
+        
     }
     
     
