@@ -20,6 +20,7 @@ public class Examination {
         ramme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ramme.setResizable(false);
         ramme.pack();
+        System.out.println("Eins zum die zwei nach den drei");
         ramme.setVisible(true);
     }
     
