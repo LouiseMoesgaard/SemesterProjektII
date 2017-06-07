@@ -1,16 +1,6 @@
 
 import javax.swing.JFrame;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author louise
- */
 public class Examination {
     
     public static void main (String[] args ){
@@ -20,7 +10,6 @@ public class Examination {
         ramme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ramme.setResizable(false);
         ramme.pack();
-        System.out.println("Eins zum die zwei nach den drei");
         ramme.setVisible(true);
     }
     

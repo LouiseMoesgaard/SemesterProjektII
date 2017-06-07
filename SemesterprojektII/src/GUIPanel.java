@@ -1,13 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author louise
- */
 public class GUIPanel extends javax.swing.JPanel {
 
     /**
@@ -26,28 +16,47 @@ public class GUIPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        JBotton = new javax.swing.JButton();
 
-        jLabel1.setText("Fy fan!");
+        JBotton.setText("Start undersøgelse");
+        JBotton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBottonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 552, Short.MAX_VALUE))
+                .addGap(66, 66, 66)
+                .addComponent(JBotton)
+                .addContainerGap(583, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 284, Short.MAX_VALUE))
+                .addGap(124, 124, 124)
+                .addComponent(JBotton)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JBottonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBottonActionPerformed
+        // TODO add your handling code here:
+       if(JBotton.getText().equals("Påbegynd undersøgelse")){
+           System.out.println("Påbegynd undersøgelse");
+           JBotton.setText("Stop undersøgelse");
+       }else{
+           System.out.println("Stopper");
+           JBotton.setText("Stop undersøgelse");
+           
+       }
+    }//GEN-LAST:event_JBottonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton JBotton;
     // End of variables declaration//GEN-END:variables
 }
