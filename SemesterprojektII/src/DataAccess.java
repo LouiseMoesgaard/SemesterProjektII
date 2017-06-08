@@ -19,19 +19,22 @@ public class DataAccess {
     }
     
     public void createTable(){
-        try{    
-            Statement stmt = conn.createStatement();
-            String sql = "CREATE TABLE SensorValues "+ //hjælp til if not exist
+        Statement stmt = conn.createStatement();
+        try{   
+            ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues");
+            
+            String sql = "CREATE TABLE SensorValues "+ 
                          "("+
                             "ID INT PRIMARY KEY NOT NULL,"+
                             "value INT,"+
-                            "type TEXT"+
+                            "type TEXT,"+
+                            "time TIMESTAMP" +
                          ")"; 
-            stmt.execute(sql);
+            stmt.executeUpdate(sql);
             stmt.close();
         } 
-        catch ( Exception e ) {
-          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        catch (Exception e) {
+          stmt.executeUpdate("CREATE TABLE SensorValues(id INT PRIMARY KEY NOT NULL, value INT, type TEXT, time TIMESTAMP)");
         } 
         
     }
