@@ -37,12 +37,23 @@ public class DataAccess {
         } 
     }
    
-    public void setEKG(){
+    public void setEKG(int value){
         
-   
+        try{
+        stmt.executeUpdate("INSERT INTO SensorValue(type,value,time) VALUES ('EKG', "+value+", NOW())");
+     
+        }   catch(Exception e){
+                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+            }
     }
     
-    public void setPulse(){   
+    public void setPulse(int value){
+        try{
+        stmt.executeUpdate("INSERT INTO SensorValue(type,value,time) VALUES ('pulse', "+value+", NOW())");
+     
+        }   catch(Exception e){
+                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+            }
     }
     
     public ArrayList<Integer> getEKG(){
@@ -74,7 +85,6 @@ public class DataAccess {
         }   catch (Exception e) {
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
-           return data;
-    
+           return data;   
     }
 }
