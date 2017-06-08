@@ -1,8 +1,12 @@
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DataAccess {
     private Connection conn = null;
+    private Statement stmt;
+
     
     public DataAccess(){
         makeConnection(); // bruges til at lave forbindelse, når objektet initialiseres. 
@@ -21,24 +25,56 @@ public class DataAccess {
     
     public void createTable(){
         try{   
-            Statement stmt = conn.createStatement();
+            stmt = conn.createStatement();
             ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues");        
         } 
         catch (Exception e) {
-          stmt.executeUpdate("CREATE TABLE SensorValues(id DOUBLE PRIMARY KEY NOT NULL, value DOUBLE, type TEXT, time TIMESTAMP)");
+            try {
+                stmt.executeUpdate("CREATE TABLE SensorValues(id INT PRIMARY KEY AUTO INCREMENT NOT NULL, value INT, type TEXT, time TIMESTAMP)");
+            } catch (SQLException ex) {
+                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } 
     }
    
-    public void SetEKG(){    
-    }
-    
-    public void SetPulse(){   
-    }
-    
-    public ArrayList<Double> getEKG(){
-    }
-    
-    public ArrayList<Double> getPulse(String pulse){
+    public void setEKG(){
         
+   
+    }
+    
+    public void setPulse(){   
+    }
+    
+    public ArrayList<Integer> getEKG(){
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        
+        try {
+            ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues WHERE type = 'EKG' ORDER BY id DESC LIMIT 10");
+            
+            while(r.next()){ 
+                data.add(0,r.getInt("type"));               
+            }
+
+        }   catch (Exception e) {
+                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+            }
+           return data;
+    }
+    
+    public ArrayList<Integer> getPulse(){ 
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        
+        try {
+            ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues WHERE type = 'pulse' ORDER BY id DESC LIMIT 10");
+            
+            while(r.next()){ 
+                data.add(0,r.getInt("type"));               
+            }
+
+        }   catch (Exception e) {
+                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+            }
+           return data;
+    
     }
 }
