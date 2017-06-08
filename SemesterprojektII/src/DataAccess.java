@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.*;
 
 public class DataAccess {
     private Connection conn = null;
@@ -19,23 +20,25 @@ public class DataAccess {
     }
     
     public void createTable(){
-        Statement stmt = conn.createStatement();
         try{   
-            ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues");
-            
-            String sql = "CREATE TABLE SensorValues "+ 
-                         "("+
-                            "ID INT PRIMARY KEY NOT NULL,"+
-                            "value INT,"+
-                            "type TEXT,"+
-                            "time TIMESTAMP" +
-                         ")"; 
-            stmt.executeUpdate(sql);
-            stmt.close();
+            Statement stmt = conn.createStatement();
+            ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues");        
         } 
         catch (Exception e) {
-          stmt.executeUpdate("CREATE TABLE SensorValues(id INT PRIMARY KEY NOT NULL, value INT, type TEXT, time TIMESTAMP)");
+          stmt.executeUpdate("CREATE TABLE SensorValues(id DOUBLE PRIMARY KEY NOT NULL, value DOUBLE, type TEXT, time TIMESTAMP)");
         } 
+    }
+   
+    public void SetEKG(){    
+    }
+    
+    public void SetPulse(){   
+    }
+    
+    public ArrayList<Double> getEKG(){
+    }
+    
+    public ArrayList<Double> getPulse(String pulse){
         
     }
 }
