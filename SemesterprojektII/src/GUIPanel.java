@@ -18,7 +18,7 @@ public class GUIPanel extends javax.swing.JPanel {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jInternalFrame2 = new javax.swing.JInternalFrame();
-        JBotton = new javax.swing.JButton();
+        startButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -54,10 +54,10 @@ public class GUIPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(254, 255, 252));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        JBotton.setText("Påbegynd undersøgelse");
-        JBotton.addActionListener(new java.awt.event.ActionListener() {
+        startButton.setText("Påbegynd undersøgelse");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBottonActionPerformed(evt);
+                startButtonActionPerformed(evt);
             }
         });
 
@@ -109,7 +109,7 @@ public class GUIPanel extends javax.swing.JPanel {
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(JBotton)))
+                        .addComponent(startButton)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(138, 138, 138)
@@ -133,27 +133,26 @@ public class GUIPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JBotton))
+                        .addComponent(startButton))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JBottonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBottonActionPerformed
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
-       if(JBotton.getText().equals("Påbegynd undersøgelse")){
+       if(startButton.getText().equals("Påbegynd undersøgelse")){
            System.out.println("Påbegynd undersøgelse");
-           JBotton.setText("Stop undersøgelse");
+           startButton.setText("Stop undersøgelse");
        }else{
            System.out.println("Stopper");
-           JBotton.setText("Stop undersøgelse");
+           startButton.setText("Stop undersøgelse");
            
        }
-    }//GEN-LAST:event_JBottonActionPerformed
+    }//GEN-LAST:event_startButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBotton;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel2;
@@ -161,5 +160,6 @@ public class GUIPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     public javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanel3;
+    private javax.swing.JButton startButton;
     // End of variables declaration//GEN-END:variables
 }
