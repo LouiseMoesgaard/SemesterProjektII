@@ -46,12 +46,12 @@ public class Graph extends JPanel  {
             graphPoints.add(new Point(x1, y1));
         }
 
-         /*tegner hvid baggrund*/
+         /*Tegner hvid baggrund*/
         g2.setColor(Color.WHITE);
         g2.fillRect(padding + labelPadding, padding, getWidth() - (2 * padding) - labelPadding, getHeight() - 2 * padding - labelPadding);
         g2.setColor(Color.BLACK);
 
-       /*vi tilføjer gitter for y-aksen*/
+       /*Tilføjer gitter for y-aksen*/
         for (int i = 0; i < numberYDivisions + 1; i++) {
             int x0 = padding + labelPadding;
             int x1 = pointWidth + padding + labelPadding;
@@ -69,7 +69,7 @@ public class Graph extends JPanel  {
             g2.drawLine(x0, y0, x1, y1);
         }
 
-        /*og for x-aksen*/
+        /*Gitter for x-aksen*/
         for (int i = 0; i < this.data.size(); i++) {
             if (this.data.size() > 1) {
                 int x0 = i * (getWidth() - padding * 2 - labelPadding) / (this.data.size() - 1) + padding + labelPadding;
@@ -89,7 +89,7 @@ public class Graph extends JPanel  {
             }
         }
 
-        /*så opretter vi x- og y-aksen*/
+        /*Opretter vi x- og y-aksen*/
         g2.drawLine(padding + labelPadding, getHeight() - padding - labelPadding, padding + labelPadding, padding);
         g2.drawLine(padding + labelPadding, getHeight() - padding - labelPadding, getWidth() - padding, getHeight() - padding - labelPadding);
 
@@ -127,9 +127,9 @@ public class Graph extends JPanel  {
 
     private void simulerData() {
         int[] simuler = new int[super.getWidth()/2]; 
-        //lav et array med halvt så mange pladser som der er pixels.
+        //Lav et array med halvt så mange pladser som der er pixels.
         for (int i =0;i<simuler.length; i++){
-            //for hvert element i simuler, skal det være et tilfældig tal.   
+            //For hvert element i simulere, skal det være et tilfældig tal.   
         }
     }
 }

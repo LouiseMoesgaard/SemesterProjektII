@@ -9,8 +9,8 @@ public class DataAccess {
 
     
     public DataAccess(){
-        makeConnection(); // bruges til at lave forbindelse, når objektet initialiseres. 
-        createTable(); //opretter tabellen hvis den ikke eksistere i forvejen
+        makeConnection(); // Bruges til at lave forbindelse, når objektet initialiseres. 
+        createTable(); //Opretter tabellen hvis den ikke eksistere i forvejen
     }
     
     public void makeConnection(){
