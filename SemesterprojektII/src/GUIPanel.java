@@ -141,6 +141,7 @@ public class GUIPanel extends javax.swing.JPanel {
            startButton.setText("Stop undersøgelse");
        Graph graphobject = new Graph(); // nyt
        graphobject.setVisible(true); // nyt
+       
        }else{
            System.out.println("Stopper");
            startButton.setText("Stop undersøgelse");
