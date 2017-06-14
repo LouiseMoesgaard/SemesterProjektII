@@ -34,13 +34,8 @@ public class Graph extends JPanel  {
 
      simulerData();
     }
-
-    Graph() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
- 
-    public void GraphfromFile(){ // nyt
-        
+    
+    Graph(){ // nyt
         File filnavn = new File("ecg.csv");
         inddata = new ArrayList<>();
         
@@ -55,7 +50,7 @@ public class Graph extends JPanel  {
        }
        } catch(FileNotFoundException e){e.printStackTrace();}
     }
-
+ 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -158,8 +153,8 @@ public class Graph extends JPanel  {
             //For hvert element i simulere, skal det være et tilfældig tal.   
         }
     }
+
+    void showGraph() {
+        
+    }
 }
-
-
-
-
