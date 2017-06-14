@@ -140,14 +140,16 @@ public class GUIPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        // TODO add your handling code here:
+
        if(startButton.getText().equals("Påbegynd undersøgelse")){
            System.out.println("Påbegynd undersøgelse");
            startButton.setText("Stop undersøgelse");
+       Graph graph2 = new Graph(); // nyt
+       graph2.GraphfromFile(); // nyt
+       
        }else{
            System.out.println("Stopper");
            startButton.setText("Stop undersøgelse");
-           
        }
     }//GEN-LAST:event_startButtonActionPerformed
 

@@ -1,10 +1,15 @@
 import java.awt.*;
+import java.io.File; // nyt
+import java.io.FileNotFoundException; // nyt
+import java.io.FileReader; // nyt
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
 
 public class Graph extends JPanel  {
   
+    ArrayList<Double> inddata; // nyt
+    
     private final Color lineColor =  new Color(44, 102, 230, 180);
     private final Color pointColor = new Color (100, 100, 100, 180);
     private final Color gridColor = new Color (200, 200, 200, 200);
@@ -29,7 +34,28 @@ public class Graph extends JPanel  {
 
      simulerData();
     }
-       
+
+    Graph() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+ 
+    public void GraphfromFile(){ // nyt
+        
+        File filnavn = new File("ecg.csv");
+        inddata = new ArrayList<>();
+        
+       try{
+           FileReader ind = new FileReader(filnavn);
+           Scanner scanner = new Scanner(ind);
+           
+       while(scanner.hasNext()){
+           try{
+           inddata.add(Double.parseDouble(scanner.nextLine()));
+           } catch(NumberFormatException e){ continue; }
+       }
+       } catch(FileNotFoundException e){e.printStackTrace();}
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
