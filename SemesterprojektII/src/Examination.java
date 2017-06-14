@@ -8,10 +8,10 @@ public class Examination {
         
         JFrame frame = new JFrame();
         GUIPanel gui = new GUIPanel();
-        Graph pulse = new Graph(dao.getPulse(), gui.jPanel3);
-        Graph ekg = new Graph(dao.getEKG(), gui.jPanel2);
-        gui.jPanel3.add(pulse);
-        gui.jPanel2.add(ekg);
+        Graph pulse = new Graph(dao.getPulse(), gui.PulsePanel);
+        Graph ekg = new Graph(dao.getEKG(), gui.EKGPanel);
+        gui.PulsePanel.add(pulse);
+        gui.EKGPanel.add(ekg);
         
         frame.add(gui);
         
