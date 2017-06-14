@@ -30,7 +30,7 @@ public class DataAccess {
         } 
         catch (Exception e) {
             try {
-                stmt.executeUpdate("CREATE TABLE SensorValues(id INT PRIMARY KEY AUTO INCREMENT NOT NULL, value INT, type TEXT, time TIMESTAMP)");
+                stmt.executeUpdate("CREATE TABLE SensorValues(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, value INT, type TEXT, time TIMESTAMP)");
             } catch (SQLException ex) {
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
             }

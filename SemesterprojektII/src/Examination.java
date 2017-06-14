@@ -5,7 +5,7 @@ public class Examination {
     
     public static void main (String[] args ){
         DataAccess dao = new DataAccess();
-        
+        /*
         JFrame frame = new JFrame();
         GUIPanel gui = new GUIPanel();
         Graph pulse = new Graph(dao.getPulse(), gui.jPanel3);
@@ -23,7 +23,7 @@ public class Examination {
         //frame.pack();
         frame.setVisible(true);
         frame.repaint();
-        
+        */
         //DataAccess dao = new DataAccess();
         
     }
