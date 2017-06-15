@@ -40,7 +40,7 @@ public class DataAccess {
     public void setEKG(int value){
         
         try{
-        stmt.executeUpdate("INSERT INTO SensorValue(type,value,time) VALUES ('EKG', "+value+", NOW())");
+        stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('EKG', "+value+", date('now'))");
      
         }   catch(Exception e){
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
@@ -49,7 +49,7 @@ public class DataAccess {
     
     public void setPulse(int value){
         try{
-        stmt.executeUpdate("INSERT INTO SensorValue(type,value,time) VALUES ('pulse', "+value+", NOW())");
+        stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('pulse', "+value+", date('now'))");
      
         }   catch(Exception e){
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
@@ -87,4 +87,5 @@ public class DataAccess {
             }
            return data;   
     }
+    
 }

@@ -12,7 +12,7 @@ public class Examination {
         Graph ekg = new Graph(dao.getEKG(), gui.EKGPanel);
         gui.PulsePanel.add(pulse);
         gui.EKGPanel.add(ekg);
-        
+       
         frame.add(gui);
         
         frame.setTitle("Semesterprojekt EKG");

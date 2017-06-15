@@ -46,7 +46,7 @@ public class GUIPanel extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        setBackground(new java.awt.Color(254, 255, 252));
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         startButton.setText("Påbegynd undersøgelse");
@@ -86,6 +86,7 @@ public class GUIPanel extends javax.swing.JPanel {
             .addGap(0, 200, Short.MAX_VALUE)
         );
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("EKG-Målinger");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -139,8 +140,7 @@ public class GUIPanel extends javax.swing.JPanel {
        if(startButton.getText().equals("Påbegynd undersøgelse")){
            System.out.println("Påbegynd undersøgelse");
            startButton.setText("Stop undersøgelse");
-       Graph graphobject = new Graph(); // nyt
-       graphobject.setVisible(true); // nyt
+
        
        }else{
            System.out.println("Stopper");

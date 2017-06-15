@@ -1,11 +1,8 @@
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File; // nyt
-import java.io.FileNotFoundException; // nyt
-import java.io.FileReader; // nyt
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
+
 
 public class Graph extends JPanel  {
     
@@ -17,38 +14,18 @@ public class Graph extends JPanel  {
     private static final int BORDER_GAP = 30;
     private final int numberYDivisions = 9;
     private ArrayList<Integer> data = new ArrayList<Integer>();
-    private final int padding = 25;
-    private final int labelPadding = 25;
-    private int width, height;
+    private final int padding = 5;
+    private final int labelPadding = 5;
+
   
       
     public Graph(ArrayList<Integer> data, JPanel pan){
        this.data = data;
        
-       Dimension dim = pan.getSize();
-       
-     
-       this.width = dim.width;
-       this.height = dim.height;
+       Dimension dim = pan.getPreferredSize();
+       this.setSize(dim);
+    }
 
-     simulerData();
-    }
-    
-    Graph(){
-        String fileName = "ecg.csv";
-        File file = new File(fileName);
-        try{
-            Scanner inputStream = new Scanner(file);
-            while(inputStream.hasNext()){
-                String data = inputStream.next();
-                System.out.println(data);
-            }
-            inputStream.close();
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-    }
- 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -66,7 +43,7 @@ public class Graph extends JPanel  {
         }
 
          /*Tegner hvid baggrund*/
-        g2.setColor(Color.WHITE);
+        g2.setColor(new Color(238,238,238,238));
         g2.fillRect(padding + labelPadding, padding, getWidth() - (2 * padding) - labelPadding, getHeight() - 2 * padding - labelPadding);
         g2.setColor(Color.BLACK);
 
@@ -144,15 +121,5 @@ public class Graph extends JPanel  {
         return max;
     }
 
-    private void simulerData() {
-        int[] simuler = new int[super.getWidth()/2]; 
-        //Lav et array med halvt så mange pladser som der er pixels.
-        for (int i =0;i<simuler.length; i++){
-            //For hvert element i simulere, skal det være et tilfældig tal.   
-        }
-    }
 
-    void showGraph() {
-        
-    }
 }

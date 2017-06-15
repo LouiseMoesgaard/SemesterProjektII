@@ -9,6 +9,7 @@ public class Sensor {
     public String result;
     public boolean openPort = false;
     SerialPort serialPort;
+    
     public Sensor() {
     
     };
