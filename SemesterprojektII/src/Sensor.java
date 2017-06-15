@@ -1,4 +1,3 @@
-
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
@@ -10,7 +9,6 @@ public class Sensor {
     public boolean openPort = false;
     SerialPort serialPort;
     public Sensor() {
-    
     };
     
     public static void main (String args[]){
