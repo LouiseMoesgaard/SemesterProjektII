@@ -14,8 +14,8 @@ public class Graph extends JPanel  {
     private static final int BORDER_GAP = 30;
     private final int numberYDivisions = 9;
     private ArrayList<Integer> data = new ArrayList<Integer>();
-    private final int padding = 5;
-    private final int labelPadding = 5;
+    private final int padding = 11;
+    private final int labelPadding = 15;
 
   
       
