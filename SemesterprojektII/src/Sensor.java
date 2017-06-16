@@ -2,32 +2,25 @@ import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
 
-public class Sensor {
+public class Sensor extends Thread {
 
-    public String name;
+    public String portName;
     public String result;
     public boolean openPort = false;
     SerialPort serialPort;
     
     public Sensor() {
+        setPort();
+        openPort();
     };
+ 
     
-    public static void main (String args[]){
-        Sensor sensor = new Sensor();
-        sensor.findPort();
-    }
-    
-    public String findPort(){
+    public void setPort(){
     String[] portNames = SerialPortList.getPortNames();
         for (int i = 0; i < portNames.length; i++) {
-			name = portNames[i];
-            System.out.println(name);
-            serialPort = new SerialPort(name);
-            System.out.println(serialPort);
-             
-            
+			portName = portNames[i];
+            serialPort = new SerialPort(portName);  
         }
-        return name;
     }
     public boolean openPort() {
 
@@ -47,20 +40,35 @@ public class Sensor {
         return openPort;
     }
 
-    public String getData() {
+    public void getData() {
         
         try {
             if (serialPort.getInputBufferBytesCount() > 0) { //Indhenter data fra arduino
                 result = serialPort.readString(); //gemmer data som string
-                System.out.println(result);
             } else {
-                java.util.concurrent.TimeUnit.MILLISECONDS.sleep(1000); 
+                java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500); 
             }
         } catch (SerialPortException ex) {
             System.out.println("Fejl i linje 38 sensor");
         } catch (InterruptedException ex) {
             System.out.println("Wait Interrupted: " + ex);
         }
-        return result;
+        
+       String[] data = result.split("!");
+       int[] intData = new int[data.length];
+       for(int i = 0;i <= data.length-1;i++){
+           intData[i] = Integer.parseInt(data[i]);
+       }
+       Examination.q.addToQ(intData);
+    }
+    
+    public void run(){
+        while (true) {
+            try{
+                this.getData();
+            } catch(Exception e){
+                
+            }   
+        } 
     }
 }

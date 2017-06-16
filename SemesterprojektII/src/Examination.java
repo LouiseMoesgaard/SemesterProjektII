@@ -1,10 +1,14 @@
 
+import java.util.Arrays;
 import javax.swing.JFrame;
 
 public class Examination {
-    
+    public static Queue q = new Queue();
     public static void main (String[] args ){
         DataAccess dao = new DataAccess();
+        
+        Sensor sensor = new Sensor();
+        sensor.start();
         
         JFrame frame = new JFrame();
         GUIPanel gui = new GUIPanel();
