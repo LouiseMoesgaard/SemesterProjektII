@@ -32,9 +32,13 @@ public class PulseCalculator extends Thread {
     public void run(){
     
         while (true){
-            
+            System.out.println("calculating pulse");
             try {
                 int[] data = Examination.q.getFromQ();
+                if(data.length < 1){
+                    java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
+                    continue;
+                }
                 ArrayList<Integer> valueArray = sortData(data);
                 boolean found = false;
                 boolean foundBefore;
@@ -52,10 +56,15 @@ public class PulseCalculator extends Thread {
                         n++;
                     }
                 }
+                System.out.println(n+" "+valueArray.size());
                 int pulse = (n / ((valueArray.size()) / 200)) * 60;
-                DataAccess dao = new DataAccess();
-                dao.setPulse(pulse);
+                Examination.dao.setPulse(pulse);
+                java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
             } catch (Exception e){
+                System.out.println(e);
+                try{
+                    java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
+                } catch(Exception ex){}
                 continue;  
             }
         }

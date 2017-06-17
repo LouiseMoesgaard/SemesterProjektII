@@ -33,12 +33,13 @@ public class Graph extends JPanel  {
         super.paintComponent(g);
 
         double xScale = ((double) getWidth() - (2 * padding) - labelPadding) / (this.data.size() - 1);
-        double yScale = ((double) getHeight() - 2 * padding - labelPadding) / (getMax() - getMin());
-
+        double yScale = ((double) getHeight() - 2 * padding - labelPadding);
+        //double yScale = ((double) getHeight() - 2 * padding - labelPadding) / (getMax() - getMin());
         List<Point> graphPoints = new ArrayList<>();
         for (int i = 0; i < this.data.size(); i++) {
             int x1 = (int) (i * xScale + padding + labelPadding);
-            int y1 = (int) ((getMax() - data.get(i)) * yScale + padding);
+            int y1 = (int) (data.get(i) * yScale + padding);
+            //int y1 = (int) ((getMax() - data.get(i)) * yScale + padding);
             graphPoints.add(new Point(x1, y1));
         }
 
@@ -57,7 +58,8 @@ public class Graph extends JPanel  {
                 g2.setColor(gridColor);
                 g2.drawLine(padding + labelPadding + 1 + pointWidth, y0, getWidth() - padding, y1);
                 g2.setColor(Color.BLACK);
-                String yLabel = ((int) ((getMin() + (getMax() - getMin()) * ((i * 1.0) / numberYDivisions)) * 100)) / 100.0 + "";
+                String yLabel = (((i * 1.0) / numberYDivisions) * 100) / 100.0 + "";
+                //String yLabel = ((int) ((getMin() + (getMax() - getMin()) * ((i * 1.0) / numberYDivisions)) * 100)) / 100.0 + "";
                 FontMetrics metrics = g2.getFontMetrics();
                 int labelWidth = metrics.stringWidth(yLabel);
                 g2.drawString(yLabel, x0 - labelWidth - 5, y0 + (metrics.getHeight() / 2) - 3);
@@ -111,7 +113,7 @@ public class Graph extends JPanel  {
         } 
     }
     
-    private int getMin() {
+    /*private int getMin() {
         int min = 0;
         return min;
     }
@@ -120,6 +122,6 @@ public class Graph extends JPanel  {
         int max = 45;
         return max;
     }
-
+*/
 
 }

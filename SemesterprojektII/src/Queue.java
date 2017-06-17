@@ -16,14 +16,15 @@ public class Queue {
     public synchronized int[] getFromQ() {
         int[] data = new int[0];
         if (queueArray.size() < 1) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-            }
             data = queueArray.get(0);
             queueArray.remove(0);
-
-           
+        } else{
+            try {
+                java.util.concurrent.TimeUnit.MILLISECONDS.sleep(1000);
+                data = queueArray.get(0);
+                queueArray.remove(0);
+            } catch (InterruptedException e) {
+            }
         }
          return data;
     }

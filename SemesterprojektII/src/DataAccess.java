@@ -50,7 +50,7 @@ public class DataAccess {
     public void setPulse(int value){
         try{
         stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('pulse', "+value+", date('now'))");
-     
+        System.out.println("adding "+value+" to DB");
         }   catch(Exception e){
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -63,11 +63,12 @@ public class DataAccess {
             ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues WHERE type = 'EKG' ORDER BY id DESC LIMIT 10");
             
             while(r.next()){ 
-                data.add(0,r.getInt("type"));               
+                data.add(0,r.getInt("value"));               
             }
 
         }   catch (Exception e) {
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+                System.out.println(e);
             }
            return data;
     }
@@ -79,11 +80,12 @@ public class DataAccess {
             ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues WHERE type = 'pulse' ORDER BY id DESC LIMIT 10");
             
             while(r.next()){ 
-                data.add(0,r.getInt("type"));               
+                data.add(0,r.getInt("value"));               
             }
 
         }   catch (Exception e) {
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+                System.out.println(e);
             }
            return data;   
     }
