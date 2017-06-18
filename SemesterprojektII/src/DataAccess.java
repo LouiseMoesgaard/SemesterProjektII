@@ -50,7 +50,6 @@ public class DataAccess {
     public void setPulse(int value){
         try{
         stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('pulse', "+value+", date('now'))");
-        System.out.println("adding "+value+" to DB");
         }   catch(Exception e){
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -68,7 +67,6 @@ public class DataAccess {
 
         }   catch (Exception e) {
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
-                System.out.println(e);
             }
            return data;
     }
@@ -85,7 +83,6 @@ public class DataAccess {
 
         }   catch (Exception e) {
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
-                System.out.println(e);
             }
            return data;   
     }
