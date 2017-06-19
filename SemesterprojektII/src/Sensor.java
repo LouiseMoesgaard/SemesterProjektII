@@ -12,6 +12,7 @@ public class Sensor extends Thread {
     private Queue q = null;
     private int[] Buffer = null;
     private int bIndex = 0;
+    private DataAccess dao = new DataAccess();
     
     public Sensor(Queue q) {
         this.q = q;
@@ -55,21 +56,24 @@ public class Sensor extends Thread {
                 java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500); 
             }
         } catch (SerialPortException ex) {
-            System.out.println("Fejl i linje 38 sensor");
+            System.out.println("kan ikke finde sensor");
         } catch (InterruptedException ex) {
             System.out.println("Wait Interrupted: " + ex);
         }
         
        String[] data = result.split(",");
+       int[] intData = new int[data.length];
        for(int i = 0;i <= data.length-1;i++){
            if (bIndex >= BSIZE) {
-               q.addToQ(Buffer);
+               Examination.q.addToQ(Buffer);
                bIndex = 0;
                Buffer = new int[BSIZE];
            }
+           intData[i] = Integer.parseInt(data[i]);
            Buffer[bIndex] = Integer.parseInt(data[i]);
            bIndex++;
        }
+       dao.setEKG(intData);
        
        //Nedenstående skal bruges til EKG målingerne. 
        //Vi skal finde ud af hvordan vi finder en EKG værdi

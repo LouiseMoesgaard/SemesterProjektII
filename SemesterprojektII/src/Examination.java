@@ -1,5 +1,4 @@
 
-
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -7,7 +6,7 @@ import javax.swing.JFrame;
 
 public class Examination {
     static Queue q = new Queue();
-    static DataAccess dao = new DataAccess(q);
+    static DataAccess dao = new DataAccess();
     
     public static void main (String[] args ){
         Sensor sensor = new Sensor(q);

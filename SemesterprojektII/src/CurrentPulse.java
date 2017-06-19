@@ -6,8 +6,7 @@ import java.util.logging.Logger;
 
 public class CurrentPulse extends Thread {
     
-    private Queue newq = new Queue();
-    private DataAccess dao = new DataAccess(newq);
+    private DataAccess dao = new DataAccess();
     
     private javax.swing.JLabel label;
     

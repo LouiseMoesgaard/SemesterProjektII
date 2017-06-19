@@ -6,10 +6,9 @@ import java.util.logging.Logger;
 public class DataAccess extends Thread {
     private Connection conn = null;
     private Statement stmt;
-    private Queue q = null;
 
-    public DataAccess(Queue q){
-        this.q = q;
+
+    public DataAccess(){
         makeConnection(); // Bruges til at lave forbindelse, når objektet initialiseres. 
         createTable(); //Opretter tabellen hvis den ikke eksistere i forvejen
     }
@@ -50,11 +49,9 @@ public class DataAccess extends Thread {
             }
     }
     
-    public void setPulse(int[] value){
+    public void setPulse(int value){
         try{
-            for (int i = 0; i < value.length; i++) {
-                stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('Pulse', " + value[i] + ", date('now'))");
-            }
+                stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('Pulse', " + value + ", date('now'))"); 
         }   catch(Exception e){
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -64,7 +61,7 @@ public class DataAccess extends Thread {
         ArrayList<Integer> data = new ArrayList<Integer>();
         
         try {
-            ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues WHERE type = 'EKG' ORDER BY id DESC LIMIT 10");
+            ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues WHERE type = 'EKG' ORDER BY id DESC LIMIT 80");
             
             while(r.next()){ 
                 data.add(0,r.getInt("value"));               
@@ -91,9 +88,4 @@ public class DataAccess extends Thread {
             }
            return data;   
     }
-
-    void setPulse(int pulse) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

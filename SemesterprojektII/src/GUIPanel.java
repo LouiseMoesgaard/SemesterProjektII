@@ -6,8 +6,7 @@ import java.util.logging.Logger;
 
 public class GUIPanel extends javax.swing.JPanel {
     
-    private Queue newq = new Queue();
-    private DataAccess dao = new DataAccess(newq);
+    private DataAccess dao = new DataAccess();
     public GUIPanel() {
         initComponents();
     }
@@ -143,7 +142,7 @@ public class GUIPanel extends javax.swing.JPanel {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         Graph pulse = new Graph(dao.getPulse(), this.PulsePanel, "pulse");
-        Graph ekg = new Graph(dao.getEKG(), this.EKGPanel, "EKG", new Color(227,25,25));
+        Graph ekg = new Graph(dao.getEKG(), this.EKGPanel, "EKG");
         CurrentPulse cpulse = new CurrentPulse(this.pulseLabel);
         Thread e = new Thread(ekg);
         Thread p = new Thread(pulse);

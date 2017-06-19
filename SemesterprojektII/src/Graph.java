@@ -9,16 +9,15 @@ import javax.swing.*;
 public class Graph extends JPanel implements Runnable  {
     
     private Color lineColor =  new Color(44, 102, 230, 180);
-    private final Color pointColor = new Color (100, 100, 100, 180);
+    private final Color pointColor = new Color(44, 102, 230, 180);
     private final Color gridColor = new Color (200, 200, 200, 200);
     private final static Stroke GRAPH_STROKE = new BasicStroke(2f);
     private final int pointWidth= 4;
-    private final int numberYDivisions = 10;
+    private int numberYDivisions = 10;
     private ArrayList<Integer> data = new ArrayList<Integer>();
     private final int padding = 25;
     private final int labelPadding = 15;
-    private Queue newq = new Queue();
-    private DataAccess dao = new DataAccess(newq);
+    private DataAccess dao = new DataAccess();
     private String type;
     
     public Graph(ArrayList<Integer> data, JPanel pan, String type){
@@ -28,6 +27,16 @@ public class Graph extends JPanel implements Runnable  {
        
        Dimension dim = pan.getPreferredSize();
        this.setSize(dim);
+    }
+    
+    public Graph(ArrayList<Integer> data, JPanel pan, String type, int diversion){
+       this.data = data;
+       this.type = type;
+       this.numberYDivisions = diversion;
+       System.out.println(data);
+       
+       Dimension dim = pan.getPreferredSize();
+
     }
     
     public Graph(ArrayList<Integer> data, JPanel pan, String type, Color lineColor){
