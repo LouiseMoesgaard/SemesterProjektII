@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 public class Examination {
-    private static Queue q = new Queue();
-    private static DataAccess dao = new DataAccess(q);
+    static Queue q = new Queue();
+    static DataAccess dao = new DataAccess(q);
     
     public static void main (String[] args ){
         Sensor sensor = new Sensor(q);

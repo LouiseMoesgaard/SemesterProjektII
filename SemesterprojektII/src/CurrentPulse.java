@@ -5,7 +5,10 @@ import java.util.logging.Logger;
 
 
 public class CurrentPulse extends Thread {
-    private DataAccess dao = new DataAccess();
+    
+    private Queue newq = new Queue();
+    private DataAccess dao = new DataAccess(newq);
+    
     private javax.swing.JLabel label;
     
     public CurrentPulse(javax.swing.JLabel label){

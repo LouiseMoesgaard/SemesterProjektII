@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 
-
 public class PulseCalculator extends Thread {
     
     private ArrayList<Integer> sortData(int[] data){

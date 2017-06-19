@@ -52,7 +52,9 @@ public class DataAccess extends Thread {
     
     public void setPulse(int[] value){
         try{
-        stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('pulse', "+value+", date('now'))");
+            for (int i = 0; i < value.length; i++) {
+                stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('Pulse', " + value[i] + ", date('now'))");
+            }
         }   catch(Exception e){
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -88,6 +90,10 @@ public class DataAccess extends Thread {
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
            return data;   
+    }
+
+    void setPulse(int pulse) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
