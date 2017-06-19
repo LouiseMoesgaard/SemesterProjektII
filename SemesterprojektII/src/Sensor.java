@@ -4,12 +4,18 @@ import jssc.SerialPortList;
 
 public class Sensor extends Thread {
 
-    public String portName;
-    public String result;
-    public boolean openPort = false;
-    SerialPort serialPort;
+    private static final int BSIZE =  400;
+    private String portName;
+    private String result;
+    private boolean openPort = false;
+    private SerialPort serialPort;
+    private Queue q = null;
+    private int[] Buffer = null;
+    private int bIndex = 0;
     
-    public Sensor() {
+    public Sensor(Queue q) {
+        this.q = q;
+        Buffer = new int[BSIZE];
         setPort();
         openPort();
     };
@@ -27,7 +33,7 @@ public class Sensor extends Thread {
         try {
 
             serialPort.openPort();
-            serialPort.setParams(38400, 8, 1, 0); //sætter parametre
+            serialPort.setParams(38400, 8, 1, 0); // (baud rate, )
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
             serialPort.setDTR(true);
             openPort = true;
@@ -54,12 +60,17 @@ public class Sensor extends Thread {
             System.out.println("Wait Interrupted: " + ex);
         }
         
-       String[] data = result.split("!");
-       int[] intData = new int[data.length];
+       String[] data = result.split(",");
        for(int i = 0;i <= data.length-1;i++){
-           intData[i] = Integer.parseInt(data[i]);
+           if (bIndex >= BSIZE) {
+               q.addToQ(Buffer);
+               bIndex = 0;
+               Buffer = new int[BSIZE];
+           }
+           Buffer[bIndex] = Integer.parseInt(data[i]);
+           bIndex++;
        }
-       Examination.q.addToQ(intData);
+       
        //Nedenstående skal bruges til EKG målingerne. 
        //Vi skal finde ud af hvordan vi finder en EKG værdi
        //int EKG = 
@@ -68,6 +79,7 @@ public class Sensor extends Thread {
     }
     
     public void run(){
+        System.out.println("Sensor: " + q);
         while (true) {
             try{
                 this.getData();

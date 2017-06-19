@@ -3,12 +3,13 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DataAccess {
+public class DataAccess extends Thread {
     private Connection conn = null;
     private Statement stmt;
+    private Queue q = null;
 
-    
-    public DataAccess(){
+    public DataAccess(Queue q){
+        this.q = q;
         makeConnection(); // Bruges til at lave forbindelse, når objektet initialiseres. 
         createTable(); //Opretter tabellen hvis den ikke eksistere i forvejen
     }

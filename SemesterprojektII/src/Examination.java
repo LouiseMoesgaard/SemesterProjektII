@@ -6,11 +6,11 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 public class Examination {
-    public static Queue q = new Queue();
-    public static DataAccess dao = new DataAccess();
+    private static Queue q = new Queue();
+    private static DataAccess dao = new DataAccess(q);
     
     public static void main (String[] args ){
-        Sensor sensor = new Sensor();
+        Sensor sensor = new Sensor(q);
         sensor.start();
         PulseCalculator pCalc = new PulseCalculator();
         pCalc.start();

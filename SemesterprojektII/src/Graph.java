@@ -19,7 +19,7 @@ public class Graph extends JPanel implements Runnable  {
     private final int labelPadding = 15;
     private DataAccess dao = new DataAccess();
     private String type;
-      
+    
     public Graph(ArrayList<Integer> data, JPanel pan, String type){
        this.data = data;
        this.type = type;
