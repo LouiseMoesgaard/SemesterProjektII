@@ -83,7 +83,6 @@ public class Sensor extends Thread {
     }
     
     public void run(){
-        System.out.println("Sensor: " + q);
         while (true) {
             try{
                 this.getData();

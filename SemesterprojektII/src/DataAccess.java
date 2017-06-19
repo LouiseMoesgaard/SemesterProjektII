@@ -45,7 +45,7 @@ public class DataAccess extends Thread {
                 stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('EKG', " + value[i] + ", date('now'))");
             }
         }   catch(Exception e){
-                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
     }
     
@@ -53,7 +53,7 @@ public class DataAccess extends Thread {
         try{
                 stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('Pulse', " + value + ", date('now'))"); 
         }   catch(Exception e){
-                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
     }
     
@@ -68,7 +68,7 @@ public class DataAccess extends Thread {
             }
 
         }   catch (Exception e) {
-                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
            return data;
     }
@@ -84,8 +84,9 @@ public class DataAccess extends Thread {
             }
 
         }   catch (Exception e) {
-                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
+        System.out.println(data);
            return data;   
     }
 }
