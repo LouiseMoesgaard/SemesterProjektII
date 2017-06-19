@@ -19,6 +19,7 @@ public class Graph extends JPanel implements Runnable  {
     private final int labelPadding = 15;
     private DataAccess dao = new DataAccess();
     private String type;
+    private boolean running = true; 
     
     public Graph(ArrayList<Integer> data, JPanel pan, String type){
        this.data = data;
@@ -156,7 +157,7 @@ public class Graph extends JPanel implements Runnable  {
     }
     
     public void run(){
-        while (true){
+        while (running){
             try {
                 if (this.type == "pulse"){
                     this.data = dao.getPulse();
@@ -166,11 +167,25 @@ public class Graph extends JPanel implements Runnable  {
                 this.repaint();
                 java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException ex) {
+    
                 Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
     }
+    
+    public void pause(){
+        this.running = false;
+    }
+    
+    public void resume(){
+        this.running = true;
+    }
+    
+    public boolean getState(){
+        return this.running;
+    }
+   
 
 
 }

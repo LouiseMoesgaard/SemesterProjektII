@@ -5,10 +5,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GUIPanel extends javax.swing.JPanel {
-    
+    private Graph pulse;
+    private Graph ekg;
+    private CurrentPulse cpulse;
+    private Thread e;
+    private Thread p;
     private DataAccess dao = new DataAccess();
+    private boolean first = true;
     public GUIPanel() {
         initComponents();
+        pulse = new Graph(dao.getPulse(), this.PulsePanel, "pulse");
+        ekg = new Graph(dao.getEKG(), this.EKGPanel, "EKG");
+        cpulse = new CurrentPulse(this.pulseLabel);
+        e = new Thread(ekg);
+        p = new Thread(pulse);
     }
 
     @SuppressWarnings("unchecked")
@@ -141,20 +151,21 @@ public class GUIPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        Graph pulse = new Graph(dao.getPulse(), this.PulsePanel, "pulse");
-        Graph ekg = new Graph(dao.getEKG(), this.EKGPanel, "EKG");
-        CurrentPulse cpulse = new CurrentPulse(this.pulseLabel);
-        Thread e = new Thread(ekg);
-        Thread p = new Thread(pulse);
+        
        if(startButton.getText().equals("Påbegynd undersøgelse")){
            System.out.println("Påbegynd undersøgelse");
            startButton.setText("Stop undersøgelse");
-           cpulse.start();
+            cpulse.start();
             this.PulsePanel.add(pulse);
             this.EKGPanel.add(ekg);
-        
-            e.start();
-            p.start();
+            if(first){
+                e.start();
+                p.start();
+                first = false;
+            } else{
+                ekg.resume();
+                pulse.resume();
+            } 
             
            /* while (true){
                try {
@@ -169,8 +180,10 @@ public class GUIPanel extends javax.swing.JPanel {
        }else{
            System.out.println("Stopper");
            startButton.setText("Påbegynd undersøgelse");
-           //e.stop();
-           //p.stop();
+           ekg.pause();
+           pulse.pause();
+ 
+ 
 
        }
     }//GEN-LAST:event_startButtonActionPerformed

@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 public class Examination {
     static Queue q = new Queue();
-    static DataAccess dao = new DataAccess();
+    static final DataAccess dao = new DataAccess();
     
     public static void main (String[] args ){
         Sensor sensor = new Sensor(q);

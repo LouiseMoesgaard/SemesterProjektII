@@ -77,7 +77,7 @@ public class DataAccess extends Thread {
         ArrayList<Integer> data = new ArrayList<Integer>();
         
         try {
-            ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues WHERE type = 'pulse' ORDER BY id DESC LIMIT 10");
+            ResultSet r = stmt.executeQuery("SELECT * FROM SensorValues WHERE type = 'pulse' ORDER BY id DESC LIMIT 20");
             
             while(r.next()){ 
                 data.add(0,r.getInt("value"));               
