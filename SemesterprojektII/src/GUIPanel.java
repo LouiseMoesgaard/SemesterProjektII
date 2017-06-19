@@ -5,7 +5,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GUIPanel extends javax.swing.JPanel {
-    private DataAccess dao = new DataAccess();
+    
+    private Queue newq = new Queue();
+    private DataAccess dao = new DataAccess(newq);
     public GUIPanel() {
         initComponents();
     }

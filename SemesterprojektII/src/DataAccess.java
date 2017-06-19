@@ -38,17 +38,19 @@ public class DataAccess extends Thread {
         } 
     }
    
-    public void setEKG(int value){
+    public void setEKG(int[] value){
         
         try{
-        stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('EKG', "+value+", date('now'))");
-     
+            //PreparedStatement pstmt = new PreparedStatement();
+            for (int i = 0; i < value.length; i++) {
+                stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('EKG', " + value[i] + ", date('now'))");
+            }
         }   catch(Exception e){
                 Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
             }
     }
     
-    public void setPulse(int value){
+    public void setPulse(int[] value){
         try{
         stmt.executeUpdate("INSERT INTO SensorValues(type,value,time) VALUES ('pulse', "+value+", date('now'))");
         }   catch(Exception e){

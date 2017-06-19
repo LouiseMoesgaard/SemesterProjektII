@@ -17,7 +17,8 @@ public class Graph extends JPanel implements Runnable  {
     private ArrayList<Integer> data = new ArrayList<Integer>();
     private final int padding = 25;
     private final int labelPadding = 15;
-    private DataAccess dao = new DataAccess();
+    private Queue newq = new Queue();
+    private DataAccess dao = new DataAccess(newq);
     private String type;
     
     public Graph(ArrayList<Integer> data, JPanel pan, String type){
