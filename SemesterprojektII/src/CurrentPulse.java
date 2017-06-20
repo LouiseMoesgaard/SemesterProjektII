@@ -5,8 +5,6 @@ import java.util.logging.Logger;
 
 public class CurrentPulse extends Thread {
 
-    private DataAccess dao = new DataAccess();
-
     private javax.swing.JLabel label;
 
     public CurrentPulse(javax.swing.JLabel label) {
@@ -17,7 +15,7 @@ public class CurrentPulse extends Thread {
         while (true) {
             try {
                 java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
-                ArrayList<Integer> data = dao.getPulse();
+                /*ArrayList<Integer> data = dao.getPulse();
                 if (data.size() > 0) {
                     int d = 0;
                     if (data.size() > 1) {
@@ -27,7 +25,7 @@ public class CurrentPulse extends Thread {
                     }
                     System.out.println(d);
                     label.setText(Integer.toString(d));
-                }
+                }*/
             } catch (Exception ex) {
                 Logger.getLogger(GUIPanel.class.getName()).log(Level.SEVERE, null, ex);
             }

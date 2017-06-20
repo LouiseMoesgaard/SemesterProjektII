@@ -5,20 +5,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GUIPanel extends javax.swing.JPanel {
-    private Graph pulse;
+    //private Graph pulse;
     private Graph ekg;
-    private CurrentPulse cpulse;
+    //private CurrentPulse cpulse;
     private Thread e;
-    private Thread p;
-    private DataAccess dao = new DataAccess();
+    //private Thread p;
     private boolean first = true;
-    public GUIPanel() {
+    public GUIPanel(DataAccess dao) {
         initComponents();
-        pulse = new Graph(dao.getPulse(), this.PulsePanel, "pulse");
-        ekg = new Graph(dao.getEKG(), this.EKGPanel, "EKG");
-        cpulse = new CurrentPulse(this.pulseLabel);
+        //pulse = new Graph(dao.getPulse(), this.PulsePanel, "pulse");
+        ekg = new Graph(dao, this.EKGPanel, 0);
+        //cpulse = new CurrentPulse(this.pulseLabel);
         e = new Thread(ekg);
-        p = new Thread(pulse);
+        //p = new Thread(pulse);
     }
 
     @SuppressWarnings("unchecked")
@@ -155,16 +154,16 @@ public class GUIPanel extends javax.swing.JPanel {
        if(startButton.getText().equals("Påbegynd undersøgelse")){
            System.out.println("Påbegynd undersøgelse");
            startButton.setText("Stop undersøgelse");
-            cpulse.start();
-            this.PulsePanel.add(pulse);
+            //cpulse.start();
+            //this.PulsePanel.add(pulse);
             this.EKGPanel.add(ekg);
             if(first){
                 e.start();
-                p.start();
+                //p.start();
                 first = false;
             } else{
                 ekg.resume();
-                pulse.resume();
+                //pulse.resume();
             } 
             
            /* while (true){
@@ -181,7 +180,7 @@ public class GUIPanel extends javax.swing.JPanel {
            System.out.println("Stopper");
            startButton.setText("Påbegynd undersøgelse");
            ekg.pause();
-           pulse.pause();
+           //pulse.pause();
  
  
 

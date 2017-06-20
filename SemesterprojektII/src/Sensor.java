@@ -12,7 +12,6 @@ public class Sensor extends Thread {
     private Queue q = null;
     private int[] Buffer = null;
     private int bIndex = 0;
-    private DataAccess dao = new DataAccess();
     
     public Sensor(Queue q) {
         this.q = q;
@@ -52,7 +51,7 @@ public class Sensor extends Thread {
         try {
             if (serialPort.getInputBufferBytesCount() > 0) { //Indhenter data fra arduino
                 result = serialPort.readString(); //gemmer data som string
-                System.out.println("["+result+"]");
+                //System.out.println("["+result+"]");
             } else {
                 sleep(100); 
             }
@@ -74,7 +73,6 @@ public class Sensor extends Thread {
            Buffer[bIndex] = Integer.parseInt(data[i]);
            bIndex++;
        }
-       dao.setEKG(intData);
        
        //Nedenstående skal bruges til EKG målingerne. 
        //Vi skal finde ud af hvordan vi finder en EKG værdi

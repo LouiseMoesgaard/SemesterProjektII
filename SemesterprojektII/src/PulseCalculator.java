@@ -32,7 +32,7 @@ public class PulseCalculator extends Thread {
     
         while (true){
             try {
-                int[] data = Examination.q.getFromQ();
+                int[] data = null;
                 if(data.length < 1){
                     java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
                     continue;

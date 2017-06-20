@@ -17,12 +17,13 @@ public class Graph extends JPanel implements Runnable  {
     private ArrayList<Integer> data = new ArrayList<Integer>();
     private final int padding = 25;
     private final int labelPadding = 15;
-    private DataAccess dao = new DataAccess();
-    private String type;
+    private int type;
     private boolean running = true; 
+    private DataAccess dao = null;
     
-    public Graph(ArrayList<Integer> data, JPanel pan, String type){
-       this.data = data;
+    public Graph(DataAccess dao, JPanel pan, int type){
+       this.dao = dao;
+       //this.data = data;
        this.type = type;
        System.out.println(data);
        
@@ -30,7 +31,7 @@ public class Graph extends JPanel implements Runnable  {
        this.setSize(dim);
     }
     
-    public Graph(ArrayList<Integer> data, JPanel pan, String type, int diversion){
+    public Graph(ArrayList<Integer> data, JPanel pan, int type, int diversion){
        this.data = data;
        this.type = type;
        this.numberYDivisions = diversion;
@@ -40,7 +41,7 @@ public class Graph extends JPanel implements Runnable  {
 
     }
     
-    public Graph(ArrayList<Integer> data, JPanel pan, String type, Color lineColor){
+    public Graph(ArrayList<Integer> data, JPanel pan, int type, Color lineColor){
        this.data = data;
        this.type = type;
        this.lineColor = lineColor;
@@ -53,6 +54,10 @@ public class Graph extends JPanel implements Runnable  {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        System.out.println("PaintComponent");
+        if (type == 0) {
+            data = dao.getEKG();
+        }
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int fontSize = getHeight()/14;
@@ -159,10 +164,10 @@ public class Graph extends JPanel implements Runnable  {
     public void run(){
         while (running){
             try {
-                if (this.type == "pulse"){
-                    this.data = dao.getPulse();
+                if (this.type == 1){
+                   // this.data = dao.getPulse();
                 } else{
-                    this.data = dao.getEKG();
+                    //this.data = dao.getEKG();
                 }
                 this.repaint();
                 java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);

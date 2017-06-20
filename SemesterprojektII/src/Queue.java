@@ -1,4 +1,7 @@
+
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Queue {
 
@@ -18,25 +21,23 @@ public class Queue {
         System.out.println("getFromQ");
         int[] data = new int[0];
         if (queueArray.size() < 1) {
-            data = queueArray.get(0);
-            queueArray.remove(0);
-        } else{
             try {
-                java.util.concurrent.TimeUnit.MILLISECONDS.sleep(1000);
-                data = queueArray.get(0);
-                queueArray.remove(0);
-            } catch (InterruptedException e) {
+                wait();
+            } catch (InterruptedException ex) {
+
             }
         }
-         return data;
+        data = queueArray.get(0);
+        queueArray.remove(0);
+
+        return data;
     }
-    
-    public int size(){
+
+    public int size() {
         return queueArray.size();
     }
-    
-    public int[] get(int index){
+
+    public int[] get(int index) {
         return queueArray.get(index);
     }
 }
-
