@@ -48,7 +48,7 @@ public class DataAccess extends Thread {
         try {
             //PreparedStatement pstmt = new PreparedStatement();
             for (int i = 0; i < value.length; i++) {
-                stmt.executeUpdate("INSERT INTO SensorValues(type,value) VALUES ('EKG', " + value[i] + ")");
+                stmt.executeUpdate("INSERT INTO SensorValues(type,value) VALUES ("+ 0 + "," + value[i]+")");
             }
         } catch (Exception e) {
             System.out.println("setEKG: " + e);

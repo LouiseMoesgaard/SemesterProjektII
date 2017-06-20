@@ -55,7 +55,7 @@ public class PulseCalculator extends Thread {
                     }
                 }
               
-                int pulse = (n / ((valueArray.size()) / 200)) * 60;
+                int pulse = (n / ((valueArray.size()) / 400)) * 60;
                 Examination.dao.setPulse(pulse);
                 java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
             } catch (Exception e){

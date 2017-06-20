@@ -5,7 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-
 public class Graph extends JPanel implements Runnable  {
     
     private Color lineColor =  new Color(44, 102, 230, 180);
@@ -23,7 +22,6 @@ public class Graph extends JPanel implements Runnable  {
     
     public Graph(DataAccess dao, JPanel pan, int type){
        this.dao = dao;
-       //this.data = data;
        this.type = type;
        System.out.println(data);
        
@@ -149,25 +147,15 @@ public class Graph extends JPanel implements Runnable  {
     }
 
     private int getMax() {
-        int max = 0;
-        
-        for(int i = 0; i < this.data.size()-1; i++){
-            if(this.data.get(i) > max){
-                
-                max = this.data.get(i);
-            }
-        }
-        
-        return max+25;
+        int max = 1030;
+        return max;
     }
     
     public void run(){
         while (running){
             try {
                 if (this.type == 1){
-                   // this.data = dao.getPulse();
                 } else{
-                    //this.data = dao.getEKG();
                 }
                 this.repaint();
                 java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
