@@ -7,7 +7,7 @@ public class Queue {
     public synchronized void addToQ(int[] queueData) {
 
         queueArray.add(queueData);
-        //System.out.println("Kø: " + queueArray.size() + "[" + queueData.length + "]");
+        System.out.println("Kø: " + queueArray.size() + "[" + queueData.length + "]" + " " + queueData[0]);
         if (queueArray.size() >= 1) {
             notify();
         }
@@ -15,6 +15,7 @@ public class Queue {
     }
 
     public synchronized int[] getFromQ() {
+        System.out.println("getFromQ");
         int[] data = new int[0];
         if (queueArray.size() < 1) {
             data = queueArray.get(0);

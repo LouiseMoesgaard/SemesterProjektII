@@ -30,9 +30,10 @@ public class DataAccess extends Thread {
         } 
         catch (Exception e) {
             try {
+                stmt.executeUpdate("DROP TABLE SensorValues");
                 stmt.executeUpdate("CREATE TABLE SensorValues(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, value INT, type TEXT, time TIMESTAMP)");
             } catch (SQLException ex) {
-                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
     }

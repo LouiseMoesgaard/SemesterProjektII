@@ -52,8 +52,9 @@ public class Sensor extends Thread {
         try {
             if (serialPort.getInputBufferBytesCount() > 0) { //Indhenter data fra arduino
                 result = serialPort.readString(); //gemmer data som string
+                System.out.println("["+result+"]");
             } else {
-                java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500); 
+                sleep(100); 
             }
         } catch (SerialPortException ex) {
             System.out.println("kan ikke finde sensor");
