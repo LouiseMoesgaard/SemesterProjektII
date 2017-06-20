@@ -1,71 +1,69 @@
-
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class PulseCalculator extends Thread {
     
-    private ArrayList<Integer> sortData(int[] data){
-        ArrayList<Integer> valueArray = new ArrayList<Integer>();;
-        for (int i = 0; i < data.length - 1; i++) {
-            int value = 0;
-            try {
-                value = data[i];
-                if (value > 5) {
-                    value = 0;
-                }
-            } catch (NumberFormatException ex) {
-                value = 0;
-            }
-            if (value == 0) {
-                if (i > 0) {
-                    value = data[i - 1];
-                } else {
-                    value = 0;
-                }
-            }
-
-                valueArray.add(value);
+    private DataAccess dao;
+    private ArrayList<Integer> dataArrayList = new ArrayList<Integer>();
+    double gennemsnit;
+     private int type;
+     int sum;
+     boolean overMax = false;
+     int pulsMinut;
+    
+     public PulseCalculator(DataAccess dao, int type){
+       this.dao = dao;
+       this.type = type;
+     }
+     
+     public PulseCalculator(ArrayList<Integer> dataArrayList, int type){
+       this.dataArrayList = dataArrayList;
+       this.type = type;
+     }
+      public static void main (String[] args ){
+      }
+    
+    public int getSum() {
+   
+        gennemsnit = 0.0; //Resetter gennemsnittet ved hvert gennemløb
+        
+      if (type == 0) {
+            dataArrayList = dao.getEKG();
         }
-        return valueArray;
+
+         for (int i = 1; i < dataArrayList.size(); i++){
+             sum += dataArrayList.get(i);
+         }
+         return sum;
     }
+    
+    public int calcPulse(){
+        int count = 0;
+        gennemsnit = 0.0;
+        gennemsnit = sum / dataArrayList.size() * 1.1;
+        
+        for (int i = 0; i < dataArrayList.size(); i++) {        /* 3 */
+                 //Hvis en måling er højere end gennemsnittet + 10%, tælles et slag
+                if (dataArrayList.get(i) > gennemsnit && !overMax) {    /* 4 */
+                    overMax = true;
+                    count = count + 1;
+
+                }
+                if (dataArrayList.get(i) < gennemsnit && overMax) {     /* 5 */
+                     // Når en måling kommer under gennemsnittet + 10%, sættes overMax til false
+                    overMax = false;
+                }
+    pulsMinut = count * 60; //Beregning af pulsen i minuttet ud for antal count
+            System.out.println("Her er pulsen:" + pulsMinut);
+            }
+           return pulsMinut;
+        }
+    
 
     public void run(){
+    getSum();
+    calcPulse();
+        
     
-        while (true){
-            try {
-                int[] data = null;
-                if(data.length < 1){
-                    java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
-                    continue;
-                }
-                ArrayList<Integer> valueArray = sortData(data);
-                boolean found = false;
-                boolean foundBefore;
-                int n = 0;
-                for (int t = 0; t < valueArray.size() - 1; t++) {
-                    int pulseValue = valueArray.get(t);
-                    foundBefore = found;
-                    if (pulseValue >= 3) {
-                        found = true;
-                    } else {
-                        found = false;
-                    }
-
-                    if (!foundBefore && found) {
-                        n++;
-                    }
-                }
-              
-                int pulse = (n / ((valueArray.size()) / 400)) * 60;
-                Examination.dao.setPulse(pulse);
-                java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
-            } catch (Exception e){
-                
-                try{
-                    java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
-                } catch(Exception ex){}
-                continue;  
-            }
-        }
-    }
-    
+}
 }
