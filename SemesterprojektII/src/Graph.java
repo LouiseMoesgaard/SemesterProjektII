@@ -160,8 +160,6 @@ public class Graph extends JPanel implements Runnable  {
                 this.repaint();
                 java.util.concurrent.TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException ex) {
-    
-                Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -174,11 +172,4 @@ public class Graph extends JPanel implements Runnable  {
     public void resume(){
         this.running = true;
     }
-    
-    public boolean getState(){
-        return this.running;
-    }
-   
-
-
 }

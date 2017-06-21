@@ -55,13 +55,13 @@ public class DataAccess extends Thread {
         }
     }
 
-    public void setPulse(int value) {
+   /* public void setPulse(int value) {
         try {
             stmt.executeUpdate("INSERT INTO SensorValues(type,value) VALUES ('Pulse', " + value + ")");
         } catch (Exception e) {
             System.out.println("setPulse: " + e);
         }
-    }
+    }*/
 
     public ArrayList<Integer> getEKG() {
         ArrayList<Integer> data = new ArrayList<Integer>();
@@ -82,7 +82,7 @@ public class DataAccess extends Thread {
         return data;
     }
 
-    public ArrayList<Integer> getPulse() {
+    /*public ArrayList<Integer> getPulse() {
         ArrayList<Integer> data = new ArrayList<Integer>();
 
         try {
@@ -93,11 +93,10 @@ public class DataAccess extends Thread {
             }
 
         } catch (Exception e) {
-            //Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, e);
         }
         System.out.println(data);
         return data;
-    }
+    }*/
 
     public void run() {
         for (;;) {

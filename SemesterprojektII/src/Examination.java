@@ -1,4 +1,5 @@
 
+
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,16 +9,16 @@ public class Examination {
 
     static Queue q = new Queue();
     static final DataAccess dao = new DataAccess(q);
+    static Sensor sensor = new Sensor(q);
+    //static PulseCalculator pCalc = new PulseCalculator();
+    static JFrame frame = new JFrame();
+    static GUIPanel gui = new GUIPanel(dao);
 
     public static void main(String[] args) {
-        Sensor sensor = new Sensor(q);
+
         sensor.start();
         dao.start();
-        PulseCalculator pCalc = new PulseCalculator();
-        pCalc.start();
-        JFrame frame = new JFrame();
-        GUIPanel gui = new GUIPanel(dao);
-
+        //pCalc.start();
         frame.add(gui);
 
         frame.setTitle("Semesterprojekt EKG");
@@ -36,8 +37,6 @@ public class Examination {
                 Logger.getLogger(Examination.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        //DataAccess dao = new DataAccess();
-
     }
 
 }

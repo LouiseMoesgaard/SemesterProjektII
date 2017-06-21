@@ -73,12 +73,6 @@ public class Sensor extends Thread {
            Buffer[bIndex] = Integer.parseInt(data[i]);
            bIndex++;
        }
-       
-       //Nedenstående skal bruges til EKG målingerne. 
-       //Vi skal finde ud af hvordan vi finder en EKG værdi
-       //int EKG = 
-       //DataAccess dao = new DataAccess();
-       //dao.setEKG(EKG);
     }
     
     public void run(){
